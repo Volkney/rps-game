@@ -15,27 +15,37 @@ function question () {
 }
 
 
-let value = false;
-function playerChoice() {
-    while (value!=true)
-        var player = prompt('What is your option for rock paper and scissors');
-        switch (player) {
-            case 'rock' || 'ROCK' || 'Rock': 
-            value = true
-            break;
+let input;
 
-            case 'paper' || 'PAPER' || 'Paper': 
-            value = true
-            break;
+function playerChoice(input) {
+    
+    while (true) {
+        input = prompt('What is your option for rock paper and scissors');
+        let value = input.toString();
+        switch (value) {
+            case "rock":
+            case "ROCK":
+            case "Rock":
+                console.log("You chose rock");
+                return; 
 
-            case 'Scissors' || 'SCISSORS' || 'Scissors': 
-            value = true
-            break;
+            case "paper":
+            case "Paper":
+            case "PAPER":
+                console.log("You chose paper");
+                return; 
+
+            case "scissors":
+            case "Scissors":
+            case "SCISSORS":
+                console.log("You chose scissors");
+                return; 
 
             default:
                 console.log('That is not a valid option')
 
         }
+    }
 }
 
-playerChoice();
+playerChoice(input);
