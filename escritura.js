@@ -50,7 +50,7 @@ function playRound(){  /* this function is to play one round of rock paper sciss
     const playerChoice = getPlayerChoice();
 
     switch (true) {
-        
+        /* check the conditions if the results yield a win or a lose */
         case computerChoice === playerChoice:
             console.log(`It's a tie! Both players chose ${computerChoice}.`);
             return 'tie';
@@ -74,7 +74,7 @@ function playRound(){  /* this function is to play one round of rock paper sciss
 function game(){
     var playerScore = 0; /* starts at zero to add keep adding the result */
     var computerScore = 0;
-    let roundPlayed = 0;
+    let roundPlayed = 0; /* variable adds the number of rounds played in total */
 
     for(let i = 0; playerScore < 3 && computerScore < 3; i++){
         const result = playRound();
@@ -89,17 +89,19 @@ function game(){
             console.log(result);
         }
         else {
-            roundPlayed++;
+            roundPlayed++;  /* else state is to count rounds for ties only*/
         }
     }
-    if (playerScore > computerScore) {
+    if (playerScore > computerScore) { /* to check who won the best of 5 */
         console.log ('Player won the game');
     }
     else {
         console.log ('Computer won the game. Player Lost :(');
     }
-    console.log(`Player Score: ${playerScore}`);
+    /* display the scores for the rounds played */
+    console.log(`Player Score: ${playerScore}`); 
     console.log(`Computer Score: ${computerScore}`);
+    /* display total rounds played */
     console.log(`The number of rounds played were ${roundPlayed}`);
 }
 
