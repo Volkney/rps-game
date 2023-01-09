@@ -53,18 +53,18 @@ function playRound(){  /* this function is to play one round of rock paper sciss
         
         case computerChoice === playerChoice:
             console.log(`It's a tie! Both players chose ${computerChoice}.`);
-            break;
+            return 'tie';
         case (playerChoice === 'Paper' && computerChoice == 'Rock') ||
             (playerChoice === 'Rock' && computerChoice == 'Scissors') ||
             (playerChoice === 'Scissors' && computerChoice == 'Paper'):
-            console.log(`Player chose ${playerChoice} and the Computer chose ${computerChoice}. You won!`)
-            break;
+            console.log(`Player chose ${playerChoice} and the Computer chose ${computerChoice}.`)
+            return 'Player wins';
         
             case (playerChoice === 'Rock' && computerChoice == 'Paper') ||
             (playerChoice === 'Scissors' && computerChoice == 'Rock') ||
             (playerChoice === 'Paper' && computerChoice == 'Scissors'):
-            console.log(`You lost! Player chose ${playerChoice} and the Computer chose ${computerChoice}`);
-            break;
+            console.log(`Player chose ${playerChoice} and the Computer chose ${computerChoice}`);
+            return 'Computer wins';
 
             
     }
@@ -72,16 +72,32 @@ function playRound(){  /* this function is to play one round of rock paper sciss
 }
 
 function game(){
+    var playerScore = 0; /* starts at zero to add keep adding the result */
+    var computerScore = 0;
+    let roundPlayed = 0;
 
-   
-
-    for(let i = 0; i < 5; i++){
-        playRound = playRound();
-        
-        console.log(i);
-
+    for(let i = 0; playerScore < 3 && computerScore < 3; i++){
+        const result = playRound();
+        if (result === 'Player wins'){
+            playerScore++;
+            roundPlayed++;
+        }
+        else if (result === 'Computer wins') {
+            computerScore++;
+            roundPlayed++;
+        }
     }
-
+    if (playerScore > computerScore) {
+        console.log ('Player won the game');
+    }
+    else {
+        console.log ('Computer won the game. Player Lost :(');
+    }
+    console.log(`Player Score: ${playerScore}`);
+    console.log(`Computer Score: ${computerScore}`);
+    console.log(`The number of rounds played were ${roundPlayed}`);
 }
+
+
 
 game();
