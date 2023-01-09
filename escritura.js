@@ -1,7 +1,7 @@
 
 /* variables */
 const options = ["Rock", "Paper", "Scissors"];
-let input = ""; /* variable for players choice */
+let playerInput = ""; /* variable for players choice */
 let computerChoice;
 let playerChoice;
 
@@ -16,8 +16,8 @@ function getComputerChoice(computerChoice) {
 function getPlayerChoice() {
     
     while (true) {
-        input = window.prompt('What is your option for rock paper and scissors');
-        const playerChoice = input.toString(); /* turn input to string to use in switch case */
+        playerInput = window.prompt('What is your option for rock paper and scissors');
+        const playerChoice = playerInput.toString(); /* turn input to string to use in switch case */
         switch (playerChoice) {
             case "rock":
             case "ROCK":
