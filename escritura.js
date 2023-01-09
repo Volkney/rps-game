@@ -6,8 +6,8 @@ let computerChoice;
 let playerChoice;
 
 /* get computer choice */
-function getComputerChoice() {
-        const computerChoice = options[Math.floor(Math.random() * 3)];
+function getComputerChoice(computerChoice) {
+        computerChoice = options[Math.floor(Math.random() * 3)];
         /* console.log(computerChoice); */
         return computerChoice
 }
@@ -16,25 +16,25 @@ function getComputerChoice() {
 function getPlayerChoice() {
     
     while (true) {
-        input = prompt('What is your option for rock paper and scissors');
+        input = window.prompt('What is your option for rock paper and scissors');
         const playerChoice = input.toString(); /* turn input to string to use in switch case */
         switch (playerChoice) {
             case "rock":
             case "ROCK":
             case "Rock":
-                console.log("You chose rock");
+                /* console.log("You chose rock"); */
                 return 'Rock'; 
 
             case "paper":
             case "Paper":
             case "PAPER":
-                console.log("You chose paper");
+                /* console.log("You chose paper"); */
                 return 'Paper'; 
 
             case "scissors":
             case "Scissors":
             case "SCISSORS":
-                console.log("You chose scissors");
+                /* console.log("You chose scissors"); */
                 return 'Scissors'; 
 
             default:
@@ -44,8 +44,7 @@ function getPlayerChoice() {
     }
 }
 
-
-function playRound(){
+function playRound(){  /* this function is to play one round of rock paper scissors */
 
     const computerChoice = getComputerChoice();
     const playerChoice = getPlayerChoice();
@@ -71,4 +70,18 @@ function playRound(){
     }
 
 }
-playRound();
+
+function game(){
+
+   
+
+    for(let i = 0; i < 5; i++){
+        playRound = playRound();
+        
+        console.log(i);
+
+    }
+
+}
+
+game();
