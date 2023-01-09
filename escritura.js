@@ -81,9 +81,14 @@ function game(){
         if (result === 'Player wins'){
             playerScore++;
             roundPlayed++;
+            console.log(result);
         }
         else if (result === 'Computer wins') {
             computerScore++;
+            roundPlayed++;
+            console.log(result);
+        }
+        else {
             roundPlayed++;
         }
     }
