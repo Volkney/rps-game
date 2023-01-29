@@ -5,13 +5,12 @@ let playerInput = ""; /* variable for players choice */
 let computerChoice;
 let playerChoice;
 
-/* get computer choice */
+
 function getComputerChoice(computerChoice) {
         computerChoice = options[Math.floor(Math.random() * 3)];
-        /* console.log(computerChoice); */
         return computerChoice
 }
-/* get players choice */
+
 
 function getPlayerChoice() {
     
@@ -22,19 +21,16 @@ function getPlayerChoice() {
             case "rock":
             case "ROCK":
             case "Rock":
-                /* console.log("You chose rock"); */
                 return 'Rock'; 
 
             case "paper":
             case "Paper":
             case "PAPER":
-                /* console.log("You chose paper"); */
                 return 'Paper'; 
 
             case "scissors":
             case "Scissors":
             case "SCISSORS":
-                /* console.log("You chose scissors"); */
                 return 'Scissors'; 
 
             default:
@@ -98,10 +94,9 @@ function game(){
     else {
         console.log ('Computer won the game. Player Lost :(');
     }
-    /* display the scores for the rounds played */
+    
     console.log(`Player Score: ${playerScore}`); 
     console.log(`Computer Score: ${computerScore}`);
-    /* display total rounds played */
     console.log(`The number of rounds played were ${roundPlayed}`);
 }
 
