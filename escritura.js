@@ -67,10 +67,10 @@ function playRound(){  /* this function is to play one round of rock paper sciss
 
 }
 
-function game(){
-    var playerScore = 0; /* starts at zero to add keep adding the result */
+/* function game(){
+    var playerScore = 0; 
     var computerScore = 0;
-    let roundPlayed = 0; /* variable adds the number of rounds played in total */
+    let roundPlayed = 0; 
 
     for(let i = 0; playerScore < 3 && computerScore < 3; i++){
         const result = playRound();
@@ -85,10 +85,10 @@ function game(){
             console.log(result);
         }
         else {
-            roundPlayed++;  /* else state is to count rounds for ties only*/
+            roundPlayed++; 
         }
     }
-    if (playerScore > computerScore) { /* to check who won the best of 5 */
+    if (playerScore > computerScore) { 
         console.log ('Player won the game');
     }
     else {
@@ -98,8 +98,67 @@ function game(){
     console.log(`Player Score: ${playerScore}`); 
     console.log(`Computer Score: ${computerScore}`);
     console.log(`The number of rounds played were ${roundPlayed}`);
-}
+} */
 
 
 
-game();
+/* game(); */
+
+
+
+/*     const rockBtn = document.getElementById("rockBtn");
+    const paperBtn = document.getElementById("paperBtn");
+    const scissorsBtn = document.getElementById("paperBtn"); */
+
+    const buttons = [
+       
+        document.getElementById("rockBtn"),
+        document.getElementById("paperBtn"),
+        document.getElementById("scissorsBtn")
+
+    ];
+
+
+    const key = [
+        rockBtn.getAttribute("data-key"),
+        paperKey = paperBtn.getAttribute("data-key"),
+        scissorsKey = scissorsBtn.getAttribute("data-key")
+    ];
+    /* const rockKey = rockBtn.getAttribute("data-key");
+    const paperKey = paperBtn.getAttribute("data-key");
+    const scissorsKey = scissorsBtn.getAttribute("data-key"); */
+
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          if(e.target === buttons[0]){
+            console.log('rock was pressed');
+            const rockDiv = document.createElement('div');
+            rockDiv.innerText = 'You chose Rock';
+            const container = document.getElementById('container');
+            container.appendChild(rockDiv);
+          }
+          else if(e.target === buttons[1]){
+            const paperDiv = document.createElement('div');
+            paperDiv.innerText = 'You chose Paper';
+            const container = document.getElementById('container');
+            container.appendChild(paperDiv);
+          }
+          else if (e.target === buttons[2]){
+            const scissorsDiv = document.createElement('div');
+            scissorsDiv.innerText = 'You chose Scissors';
+            const container = document.getElementById('container');
+            container.appendChild(scissorsDiv);
+          }
+        });
+      });
+    
+    for (let i = 0; i < key.length;i++){
+        console.log(key[i]);
+    }
+
+
+
+
+
+
