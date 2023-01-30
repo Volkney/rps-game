@@ -5,18 +5,34 @@ let playerInput = ""; /* variable for players choice */
 let computerChoice;
 let playerChoice;
 
+const buttons = [
+       
+    document.getElementById("rockBtn"),
+    document.getElementById("paperBtn"),
+    document.getElementById("scissorsBtn")
+
+];
+
+
+const key = [
+    rockBtn.getAttribute("data-key"),
+    paperKey = paperBtn.getAttribute("data-key"),
+    scissorsKey = scissorsBtn.getAttribute("data-key")
+];
+
 
 function getComputerChoice(computerChoice) {
         computerChoice = options[Math.floor(Math.random() * 3)];
-        return computerChoice
+        pcChoiceDisplay = document.getElementById('pcChoiceDisplay')
+        pcChoiceDisplay.innerText = `The computer chose: ${computerChoice}`;
 }
 
 
-function getPlayerChoice() {
+/* function getPlayerChoice() {
     
     while (true) {
         playerInput = window.prompt('What is your option for rock paper and scissors');
-        const playerChoice = playerInput.toString(); /* turn input to string to use in switch case */
+        const playerChoice = playerInput.toString(); 
         switch (playerChoice) {
             case "rock":
             case "ROCK":
@@ -38,15 +54,42 @@ function getPlayerChoice() {
 
         }
     }
-}
+} */
+function getPlayerChoice () {
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+        if(e.target === buttons[0]){
+            const rockDiv = document.getElementById('chosenOption');
+            rockDiv.innerText = 'You chose Rock';
+        }
+        else if(e.target === buttons[1]){
+            const paperDiv = document.getElementById('chosenOption');
+            paperDiv.innerText = 'You chose Paper';
+        }
+        else if (e.target === buttons[2]){
+            const scissorsDiv = document.getElementById('chosenOption');
+            scissorsDiv.innerText = 'You chose Scissors';
+        }
+        });
+    });
 
-function playRound(){  /* this function is to play one round of rock paper scissors */
+}
+    
+  buttons.forEach(button => {
+    button.addEventListener('click', function(){
+        getComputerChoice();
+        getPlayerChoice();
+    });
+  });
+
+
+function playRound(){  
 
     const computerChoice = getComputerChoice();
     const playerChoice = getPlayerChoice();
 
     switch (true) {
-        /* check the conditions if the results yield a win or a lose */
+        
         case computerChoice === playerChoice:
             console.log(`It's a tie! Both players chose ${computerChoice}.`);
             return 'tie';
@@ -56,7 +99,7 @@ function playRound(){  /* this function is to play one round of rock paper sciss
             console.log(`Player chose ${playerChoice} and the Computer chose ${computerChoice}.`)
             return 'Player wins';
         
-            case (playerChoice === 'Rock' && computerChoice == 'Paper') ||
+        case (playerChoice === 'Rock' && computerChoice == 'Paper') ||
             (playerChoice === 'Scissors' && computerChoice == 'Rock') ||
             (playerChoice === 'Paper' && computerChoice == 'Scissors'):
             console.log(`Player chose ${playerChoice} and the Computer chose ${computerChoice}`);
@@ -110,52 +153,12 @@ function playRound(){  /* this function is to play one round of rock paper sciss
     const paperBtn = document.getElementById("paperBtn");
     const scissorsBtn = document.getElementById("paperBtn"); */
 
-    const buttons = [
-       
-        document.getElementById("rockBtn"),
-        document.getElementById("paperBtn"),
-        document.getElementById("scissorsBtn")
 
-    ];
-
-
-    const key = [
-        rockBtn.getAttribute("data-key"),
-        paperKey = paperBtn.getAttribute("data-key"),
-        scissorsKey = scissorsBtn.getAttribute("data-key")
-    ];
     /* const rockKey = rockBtn.getAttribute("data-key");
     const paperKey = paperBtn.getAttribute("data-key");
     const scissorsKey = scissorsBtn.getAttribute("data-key"); */
 
 
-    buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
-          if(e.target === buttons[0]){
-            console.log('rock was pressed');
-            const rockDiv = document.createElement('div');
-            rockDiv.innerText = 'You chose Rock';
-            const container = document.getElementById('container');
-            container.appendChild(rockDiv);
-          }
-          else if(e.target === buttons[1]){
-            const paperDiv = document.createElement('div');
-            paperDiv.innerText = 'You chose Paper';
-            const container = document.getElementById('container');
-            container.appendChild(paperDiv);
-          }
-          else if (e.target === buttons[2]){
-            const scissorsDiv = document.createElement('div');
-            scissorsDiv.innerText = 'You chose Scissors';
-            const container = document.getElementById('container');
-            container.appendChild(scissorsDiv);
-          }
-        });
-      });
-    
-    for (let i = 0; i < key.length;i++){
-        console.log(key[i]);
-    }
 
 
 
