@@ -1,7 +1,6 @@
 
 /* variables */
 const options = ["Rock", "Paper", "Scissors"];
-let playerInput = ""; /* variable for players choice */
 let computerChoice;
 let playerChoice;
 
@@ -15,80 +14,45 @@ const buttons = [
 
 
 const key = [
-    rockBtn.getAttribute("data-key"),
-    paperKey = paperBtn.getAttribute("data-key"),
-    scissorsKey = scissorsBtn.getAttribute("data-key")
+    'Rock',
+    'Paper',
+    'Scissors'
 ];
 
 
 function getComputerChoice(computerChoice) {
-        computerChoice = options[Math.floor(Math.random() * 3)];
-        pcChoiceDisplay = document.getElementById('pcChoiceDisplay');
-        pcChoiceDisplay.innerText = `The computer chose ${computerChoice}`;
-        return computerChoice;
+    return options[Math.floor(Math.random() * 3)]; 
 }
 
-function getPlayerChoice () {
-    buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
-        if(e.target === buttons[0]){
-            const rockDiv = document.getElementById('chosenOption');
-            playerChoice = key[0];
-            rockDiv.innerText = `You chose ${playerChoice}`;
-            console.log(playerChoice);
-        }
-        else if(e.target === buttons[1]){
-            const paperDiv = document.getElementById('chosenOption');
-            playerChoice = key[1];
-            paperDiv.innerText = `You chose ${playerChoice}`;
-            console.log(playerChoice);
-        }
-        else if (e.target === buttons[2]){
-            const scissorsDiv = document.getElementById('chosenOption');
-            playerChoice = key[2];
-            scissorsDiv.innerText = `You chose ${playerChoice}`;
-            console.log(playerChoice);
-        }
-        });
-    });
-
+function getPlayerChoice (e) {
+    playerChoice = e.target.id.replace ('Btn', '');
+    document.getElementById('chosenOption').innerText = `You chose  ${playerChoice}`;
+    return playerChoice;
 }
-    
-  buttons.forEach(button => {
-    button.addEventListener('click', function(e){
-        
-        getPlayerChoice(e);
-        getComputerChoice();
-    });
-  });
 
 
 function playRound(){  
+    computerChoice = getComputerChoice();
+    document.getElementById('pcChoiceDisplay').innerText = `The computer chose ${computerChoice}`;
 
-    const computerChoice = getComputerChoice();
-    const playerChoice = getPlayerChoice();
-
-    switch (true) {
-        
-        case computerChoice === playerChoice:
-            console.log(`It's a tie! Both players chose ${computerChoice}.`);
-            return 'tie';
-        case (playerChoice === 'Paper' && computerChoice == 'Rock') ||
-            (playerChoice === 'Rock' && computerChoice == 'Scissors') ||
-            (playerChoice === 'Scissors' && computerChoice == 'Paper'):
-            console.log(`Player chose ${playerChoice} and the Computer chose ${computerChoice}.`)
-            return 'Player wins';
-        
-        case (playerChoice === 'Rock' && computerChoice == 'Paper') ||
-            (playerChoice === 'Scissors' && computerChoice == 'Rock') ||
-            (playerChoice === 'Paper' && computerChoice == 'Scissors'):
-            console.log(`Player chose ${playerChoice} and the Computer chose ${computerChoice}`);
-            return 'Computer wins';
-
-            
+    if (computerChoice === playerChoice) {
+        document.getElementById('result').innerText = 'Draw';
+    } else if ((playerChoice === 'Paper' && computerChoice === 'Rock') ||
+               (playerChoice === 'Rock' && computerChoice === 'Scissors') ||
+               (playerChoice === 'Scissors' && computerChoice === 'Paper')) {
+        document.getElementById('result').innerText = 'Player Wins';
+    } else {
+        document.getElementById('result').innerText = 'Computer Wins';
     }
-
 }
+
+buttons.forEach(button => {
+    button.addEventListener('click', function(e){
+        
+        playerChoice = getPlayerChoice(e);
+        playRound();
+    });
+  });
 
 /* function game(){
     var playerScore = 0; 

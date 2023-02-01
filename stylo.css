@@ -1,9 +1,12 @@
+* {
+    background-color: gainsboro;
+}
 .buttonDisplay {
     display: flex;
     justify-content: center;
     
 }
 
-#optionDisplay, #pcChoiceDisplay, #chosenOption {
+#optionDisplay, #pcChoiceDisplay, #chosenOption, #result {
     text-align: center;
 }
