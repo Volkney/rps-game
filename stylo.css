@@ -1,5 +1,9 @@
-.optionDisplay {
+.buttonDisplay {
     display: flex;
     justify-content: center;
     
+}
+
+#optionDisplay, #pcChoiceDisplay, #chosenOption {
+    text-align: center;
 }

@@ -23,52 +23,31 @@ const key = [
 
 function getComputerChoice(computerChoice) {
         computerChoice = options[Math.floor(Math.random() * 3)];
-        pcChoiceDisplay = document.getElementById('pcChoiceDisplay')
-        pcChoiceDisplay.innerText = `The computer chose: ${computerChoice}`;
+        pcChoiceDisplay = document.getElementById('pcChoiceDisplay');
+        pcChoiceDisplay.innerText = `The computer chose ${computerChoice}`;
+        return computerChoice;
 }
 
-
-/* function getPlayerChoice() {
-    
-    while (true) {
-        playerInput = window.prompt('What is your option for rock paper and scissors');
-        const playerChoice = playerInput.toString(); 
-        switch (playerChoice) {
-            case "rock":
-            case "ROCK":
-            case "Rock":
-                return 'Rock'; 
-
-            case "paper":
-            case "Paper":
-            case "PAPER":
-                return 'Paper'; 
-
-            case "scissors":
-            case "Scissors":
-            case "SCISSORS":
-                return 'Scissors'; 
-
-            default:
-                console.log('That is not a valid option')
-
-        }
-    }
-} */
 function getPlayerChoice () {
     buttons.forEach(button => {
         button.addEventListener('click', function(e) {
         if(e.target === buttons[0]){
             const rockDiv = document.getElementById('chosenOption');
-            rockDiv.innerText = 'You chose Rock';
+            playerChoice = key[0];
+            rockDiv.innerText = `You chose ${playerChoice}`;
+            console.log(playerChoice);
         }
         else if(e.target === buttons[1]){
             const paperDiv = document.getElementById('chosenOption');
-            paperDiv.innerText = 'You chose Paper';
+            playerChoice = key[1];
+            paperDiv.innerText = `You chose ${playerChoice}`;
+            console.log(playerChoice);
         }
         else if (e.target === buttons[2]){
             const scissorsDiv = document.getElementById('chosenOption');
-            scissorsDiv.innerText = 'You chose Scissors';
+            playerChoice = key[2];
+            scissorsDiv.innerText = `You chose ${playerChoice}`;
+            console.log(playerChoice);
         }
         });
     });
@@ -76,9 +55,10 @@ function getPlayerChoice () {
 }
     
   buttons.forEach(button => {
-    button.addEventListener('click', function(){
+    button.addEventListener('click', function(e){
+        
+        getPlayerChoice(e);
         getComputerChoice();
-        getPlayerChoice();
     });
   });
 
