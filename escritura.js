@@ -26,23 +26,17 @@ function getComputerChoice(computerChoice) {
 
 function getPlayerChoice (e) {
     playerChoice = e.target.id.replace ('Btn', '');
+    playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
     document.getElementById('chosenOption').innerText = `You chose  ${playerChoice}`;
     return playerChoice;
 }
 
-function capPlayerChoice() {
-    playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
-    return playerChoice;
-  }
 
 
 function playRound(){  
     computerChoice = getComputerChoice();
     document.getElementById('pcChoiceDisplay').innerText = `The computer chose ${computerChoice}`;
-    playerChoice = capPlayerChoice();
-    console.log(`Computer chose ${computerChoice}`);
-    console.log(`Player chose ${playerChoice}`);
-
+    
 
     if (computerChoice === playerChoice) {
         document.getElementById('result').innerText = 'Draw';
@@ -72,7 +66,7 @@ buttons.forEach(button => {
     });
   });
 
-/* function game(){
+ function game(){
     var playerScore = 0; 
     var computerScore = 0;
     let roundPlayed = 0; 
@@ -103,11 +97,10 @@ buttons.forEach(button => {
     console.log(`Player Score: ${playerScore}`); 
     console.log(`Computer Score: ${computerScore}`);
     console.log(`The number of rounds played were ${roundPlayed}`);
-} */
+}
 
 
 
-/* game(); */
 
 
 
