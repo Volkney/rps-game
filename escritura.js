@@ -30,19 +30,37 @@ function getPlayerChoice (e) {
     return playerChoice;
 }
 
+function capPlayerChoice() {
+    playerChoice = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1);
+    return playerChoice;
+  }
+
 
 function playRound(){  
     computerChoice = getComputerChoice();
     document.getElementById('pcChoiceDisplay').innerText = `The computer chose ${computerChoice}`;
+    playerChoice = capPlayerChoice();
+    console.log(`Computer chose ${computerChoice}`);
+    console.log(`Player chose ${playerChoice}`);
+
 
     if (computerChoice === playerChoice) {
         document.getElementById('result').innerText = 'Draw';
-    } else if ((playerChoice === 'Paper' && computerChoice === 'Rock') ||
+    } 
+    
+    else if ((playerChoice === 'Paper' && computerChoice === 'Rock') ||
                (playerChoice === 'Rock' && computerChoice === 'Scissors') ||
                (playerChoice === 'Scissors' && computerChoice === 'Paper')) {
         document.getElementById('result').innerText = 'Player Wins';
-    } else {
+               }
+
+    else if ((playerChoice === 'Rock' && computerChoice === 'Paper') ||
+        (playerChoice === 'Scissors' && computerChoice === 'Rock') ||
+        (playerChoice === 'Paper' && computerChoice === 'Scissors')) {
         document.getElementById('result').innerText = 'Computer Wins';
+    }
+    else {
+        document.getElementById('result').innerText = 'Something went wrong';
     }
 }
 
@@ -90,21 +108,6 @@ buttons.forEach(button => {
 
 
 /* game(); */
-
-
-
-/*     const rockBtn = document.getElementById("rockBtn");
-    const paperBtn = document.getElementById("paperBtn");
-    const scissorsBtn = document.getElementById("paperBtn"); */
-
-
-    /* const rockKey = rockBtn.getAttribute("data-key");
-    const paperKey = paperBtn.getAttribute("data-key");
-    const scissorsKey = scissorsBtn.getAttribute("data-key"); */
-
-
-
-
 
 
 
