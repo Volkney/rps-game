@@ -3,6 +3,7 @@
 const options = ["Rock", "Paper", "Scissors"];
 let computerChoice;
 let playerChoice;
+let roundResult;
 
 const buttons = [
        
@@ -36,68 +37,85 @@ function getPlayerChoice (e) {
 function playRound(){  
     computerChoice = getComputerChoice();
     document.getElementById('pcChoiceDisplay').innerText = `The computer chose ${computerChoice}`;
-    
-
+    const result = document.getElementById('result');
     if (computerChoice === playerChoice) {
-        document.getElementById('result').innerText = 'Draw';
+            result.innerText = 'Draw';
     } 
     
     else if ((playerChoice === 'Paper' && computerChoice === 'Rock') ||
                (playerChoice === 'Rock' && computerChoice === 'Scissors') ||
                (playerChoice === 'Scissors' && computerChoice === 'Paper')) {
-        document.getElementById('result').innerText = 'Player Wins';
+                result.innerText = 'Player Wins';
+                roundResult = 'Player Wins';
                }
 
     else if ((playerChoice === 'Rock' && computerChoice === 'Paper') ||
         (playerChoice === 'Scissors' && computerChoice === 'Rock') ||
         (playerChoice === 'Paper' && computerChoice === 'Scissors')) {
-        document.getElementById('result').innerText = 'Computer Wins';
+        result.innerText = 'Computer Wins';
+        roundResult = 'Computer Wins';
     }
     else {
-        document.getElementById('result').innerText = 'Something went wrong';
+        result.innerText = 'Something went wrong';
     }
+    return roundResult;
+}
+
+
+function game(){
+    var playerScore = 0; 
+    var computerScore = 0;
+    let roundPlayed = 0; 
+    let gameResult = document.getElementById('roundResult');
+    let roundsPlayed = document.getElementById('roundsPlayed');
+    let playerScorehtml = document.getElementById('playerScore');
+    let computerScorehtml = document.getElementById('computerScore');
+
+    while (playerScore < 3 && computerScore < 3) {
+        roundResult = playRound();
+        if (roundResult === 'Player Wins') {
+          playerScore++;
+          roundPlayed++;
+        } else if (roundResult === 'Computer Wins') {
+          computerScore++;
+          roundPlayed++;
+        } else if (roundResult === 'Draw') {
+          roundPlayed++;
+        }
+
+        playerScorehtml.innerText = `Player Score: ${playerScore}`;
+        computerScorehtml.innerText = `Computer Score: ${computerScore}`;
+
+        if (playerScore >= 3) { 
+            gameResult.innerHTML = 'Player won the game';
+            roundsPlayed.innerText = `The number of rounds played were ${roundPlayed}`;
+            break;
+        } else if (computerScore >= 3) { 
+            gameResult.innerHTML = 'Computer won the game';
+            roundsPlayed.innerText = `The number of rounds played were ${roundPlayed}`;
+            break;
+        }
+    }
+
+    if (playerScore === computerScore) { 
+        gameResult.innerHTML = "It's a draw";
+        roundsPlayed.innerText = `The number of rounds played were ${roundPlayed}`;
+    }
+}
+
+    if (playerScore === computerScore) { 
+    gameResult.innerHTML = "It's a draw";
+    roundsPlayed.innerText = `The number of rounds played were ${roundPlayed}`;
+
 }
 
 buttons.forEach(button => {
     button.addEventListener('click', function(e){
         
         playerChoice = getPlayerChoice(e);
-        playRound();
+        game();
     });
   });
-
- function game(){
-    var playerScore = 0; 
-    var computerScore = 0;
-    let roundPlayed = 0; 
-
-    for(let i = 0; playerScore < 3 && computerScore < 3; i++){
-        const result = playRound();
-        if (result === 'Player wins'){
-            playerScore++;
-            roundPlayed++;
-            console.log(result);
-        }
-        else if (result === 'Computer wins') {
-            computerScore++;
-            roundPlayed++;
-            console.log(result);
-        }
-        else {
-            roundPlayed++; 
-        }
-    }
-    if (playerScore > computerScore) { 
-        console.log ('Player won the game');
-    }
-    else {
-        console.log ('Computer won the game. Player Lost :(');
-    }
-    
-    console.log(`Player Score: ${playerScore}`); 
-    console.log(`Computer Score: ${computerScore}`);
-    console.log(`The number of rounds played were ${roundPlayed}`);
-}
 
 
 
