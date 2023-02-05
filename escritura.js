@@ -14,12 +14,6 @@ const buttons = [
 ];
 
 
-const key = [
-    'Rock',
-    'Paper',
-    'Scissors'
-];
-
 
 function getComputerChoice(computerChoice) {
     return options[Math.floor(Math.random() * 3)]; 
@@ -40,6 +34,7 @@ function playRound(){
     const result = document.getElementById('result');
     if (computerChoice === playerChoice) {
             result.innerText = 'Draw';
+            roundResult = 'Draw'
     } 
     
     else if ((playerChoice === 'Paper' && computerChoice === 'Rock') ||
@@ -58,64 +53,66 @@ function playRound(){
     else {
         result.innerText = 'Something went wrong';
     }
+    console.log(roundResult);
     return roundResult;
+    
 }
 
-
-function game(){
-    var playerScore = 0; 
-    var computerScore = 0;
-    let roundPlayed = 0; 
-    let gameResult = document.getElementById('roundResult');
-    let roundsPlayed = document.getElementById('roundsPlayed');
-    let playerScorehtml = document.getElementById('playerScore');
-    let computerScorehtml = document.getElementById('computerScore');
-
-    while (playerScore < 3 && computerScore < 3) {
-        roundResult = playRound();
-        if (roundResult === 'Player Wins') {
-          playerScore++;
-          roundPlayed++;
-        } else if (roundResult === 'Computer Wins') {
-          computerScore++;
-          roundPlayed++;
-        } else if (roundResult === 'Draw') {
-          roundPlayed++;
-        }
-
-        playerScorehtml.innerText = `Player Score: ${playerScore}`;
-        computerScorehtml.innerText = `Computer Score: ${computerScore}`;
-
-        if (playerScore >= 3) { 
-            gameResult.innerHTML = 'Player won the game';
-            roundsPlayed.innerText = `The number of rounds played were ${roundPlayed}`;
-            break;
-        } else if (computerScore >= 3) { 
-            gameResult.innerHTML = 'Computer won the game';
-            roundsPlayed.innerText = `The number of rounds played were ${roundPlayed}`;
-            break;
-        }
+function updateScores(playerScore, computerScore, roundPlayed, gameResult, roundsPlayed, playerScoreHtml, computerScoreHtml){
+    playerScoreHtml.innerText = `Player Score: ${playerScore}`;
+    computerScoreHtml.innerText = `Computer Score: ${computerScore}`;
+    if (playerScore >= 3) { 
+        gameResult.innerHTML = 'Player won the game. Game Over';
+        roundsPlayed.innerText = `The number of rounds played were ${roundPlayed}`;
+        return;
+    } else if (computerScore >= 3) { 
+        gameResult.innerHTML = 'Computer won the game. Game Over';
+        roundsPlayed.innerText = `The number of rounds played were ${roundPlayed}`;
+        return;
     }
-
-    if (playerScore === computerScore) { 
-        gameResult.innerHTML = "It's a draw";
+    else if (playerScore === computerScore) { 
         roundsPlayed.innerText = `The number of rounds played were ${roundPlayed}`;
     }
 }
-
-    if (playerScore === computerScore) { 
-    gameResult.innerHTML = "It's a draw";
-    roundsPlayed.innerText = `The number of rounds played were ${roundPlayed}`;
-
-}
+        let playerScore = 0; 
+        let computerScore = 0;
+        let roundPlayed = 0; 
 
 buttons.forEach(button => {
     button.addEventListener('click', function(e){
         
         playerChoice = getPlayerChoice(e);
-        game();
+
+        let gameResult = document.getElementById('finalResult');
+        let roundsPlayed = document.getElementById('roundsPlayed');
+        let playerScoreHtml = document.getElementById('playerScore');
+        let computerScoreHtml = document.getElementById('computerScore');
+        roundResult = playRound();
+        if (roundResult === 'Player Wins') {
+            playerScore++;
+            roundPlayed++;
+        } else if (roundResult === 'Computer Wins') {
+            computerScore++;
+            roundPlayed++;
+        } else if (roundResult === 'Draw') {
+            roundPlayed++;
+        }
+        updateScores(playerScore, computerScore, roundPlayed, gameResult, roundsPlayed, playerScoreHtml, computerScoreHtml);
     });
   });
+
+const resetBtn = document.getElementById("resetBtn");
+resetBtn.addEventListener("click", function() {
+    playerScore = 0; 
+    computerScore = 0;
+    roundPlayed = 0; 
+    document.getElementById("roundsPlayed").innerText = "";
+    document.getElementById("playerScore").innerText = "Player Score: 0";
+    document.getElementById("computerScore").innerText = "Computer Score: 0";
+    document.getElementById("finalResult").innerText = "";
+});
+
+
 
 
 

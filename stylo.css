@@ -1,5 +1,5 @@
 * {
-    background-color: gray;
+    background-color: gainsboro;
 }
 .buttonDisplay {
     display: flex;
@@ -7,6 +7,6 @@
     
 }
 
-#optionDisplay, #pcChoiceDisplay, #chosenOption, #result, #roundResult, #computerScore, #playerScore, #roundsPlayed {
+#optionDisplay, #pcChoiceDisplay, #chosenOption, #result, #finalResult, #playerScore, #computerScore, #roundsPlayed {
     text-align: center;
 }
